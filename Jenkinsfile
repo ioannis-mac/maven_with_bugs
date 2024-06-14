@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: params.BRANCHE , url: 'https://github.com/aymendr/maven_with_bugs.git'
+                git branch: params.BRANCHE , url: 'https://github.com/ioannis-mac/maven_with_bugs.git'
             }
         }
         stage('Checkout Code && Build Maven') {
@@ -38,7 +38,7 @@ pipeline {
             steps {
                 // Execute SonarQube analysis
                 script {
-                    def scannerHome = tool 'sonar_scanner'
+                    def scannerHome = tool 'sonar_scanner_tool'
                     withSonarQubeEnv('sonar_server') {
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                         -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/"
